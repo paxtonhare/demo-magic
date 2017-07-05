@@ -14,6 +14,9 @@
 # the speed to "type" the text
 TYPE_SPEED=20
 
+# no wait after "p" or "pe"
+NO_WAIT=false
+
 # handy color vars for pretty prompts
 BLACK="\033[0;30m"
 BLUE="\033[0;34m"
@@ -61,7 +64,9 @@ function p() {
   printf "$x"
 
   # wait for the user to press a key before typing the command
-  wait
+  if !($NO_WAIT); then
+    wait
+  fi
 
   if [[ -z $TYPE_SPEED ]]; then
     echo -en "\033[0m$cmd"
@@ -70,7 +75,9 @@ function p() {
   fi
 
   # wait for the user to press a key before moving on
-  wait
+  if !($NO_WAIT); then
+    wait
+  fi
   echo ""
 }
 
@@ -114,7 +121,7 @@ check_pv
 # -h for help
 # -d for disabling simulated typing
 #
-while getopts ":dh" opt; do
+while getopts ":dhn" opt; do
   case $opt in
     h)
       usage
@@ -122,6 +129,9 @@ while getopts ":dh" opt; do
       ;;
     d)
       unset TYPE_SPEED
+      ;;
+    n)
+      NO_WAIT=true
       ;;
   esac
 done
