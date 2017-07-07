@@ -7,7 +7,7 @@
 # Copyright (c) 2015 Paxton Hare
 #
 # This script lets you script demos in bash. It runs through your demo script when you press
-# a key. It simulates typing and runs commands.
+# ENTER. It simulates typing and runs commands.
 #
 ###############################################################################
 
@@ -39,10 +39,10 @@ function usage() {
 }
 
 ##
-# wait for user to press any key
+# wait for user to press ENTER
 ##
 function wait() {
-  read -rsn 1;
+  read -rs;
 }
 
 ##
@@ -60,7 +60,7 @@ function p() {
   x=$(PS1="$DEMO_PROMPT" "$BASH" --norc -i </dev/null 2>&1 | sed -n '${s/^\(.*\)exit$/\1/p;}')
   printf "$x"
 
-  # wait for the user to press a key before typing the command
+  # wait for the user to press ENTER before typing the command
   wait
 
   if [[ -z $TYPE_SPEED ]]; then
@@ -69,7 +69,7 @@ function p() {
     echo -en "\033[0m$cmd" | pv -qL $[$TYPE_SPEED+(-2 + RANDOM%5)];
   fi
 
-  # wait for the user to press a key before moving on
+  # wait for the user to press ENTER before moving on
   wait
   echo ""
 }
