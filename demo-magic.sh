@@ -7,7 +7,7 @@
 # Copyright (c) 2015 Paxton Hare
 #
 # This script lets you script demos in bash. It runs through your demo script when you press
-# a key. It simulates typing and runs commands.
+# ENTER. It simulates typing and runs commands.
 #
 ###############################################################################
 
@@ -42,10 +42,10 @@ function usage() {
 }
 
 ##
-# wait for user to press any key
+# wait for user to press ENTER
 ##
 function wait() {
-  read -rsn 1;
+  read -rs;
 }
 
 ##
