@@ -36,6 +36,14 @@ Waits for the user to press <kbd>ENTER</kbd>.
 wait
 ```
 
+### cmd
+Enters script into interactive mode and allows newly typed commands to be executed within the script
+```
+#!/bin/bash
+
+cmd
+```
+
 ## Getting Started
 Create a shell script and include demo-magic.sh
 
@@ -57,7 +65,7 @@ Then use the handy functions to run through your demo.
 
 ## Command line usage
 demo-magic.sh exposes 3 options out of the box to your script.
-- -d - disable simulated typing. Useful for debuging
+- -d - disable simulated typing. Useful for debugging
 - -h - prints the usage text
 - -n - set no default waiting after `p` and `pe` functions
 

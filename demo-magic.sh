@@ -38,6 +38,7 @@ function usage() {
   echo -e "\tWhere options is one or more of:"
   echo -e "\t-h\tPrints Help text"
   echo -e "\t-d\tDebug mode. Disables simulated typing"
+  echo -e "\t-d\tDebug mode. Disables simulated typing"
   echo -e ""
 }
 
