@@ -97,6 +97,23 @@ function pe() {
   eval "$@"
 }
 
+##
+# Enters script into interactive mode
+#
+# and allows newly typed commands to be executed within the script
+#
+# usage : cmd
+#
+##
+function cmd() {
+  # render the prompt
+  x=$(PS1="$DEMO_PROMPT" "$BASH" --norc -i </dev/null 2>&1 | sed -n '${s/^\(.*\)exit$/\1/p;}')
+  printf "$x\033[0m"
+  read command
+  eval "${command}"
+}
+
+
 function check_pv() {
   command -v pv >/dev/null 2>&1 || {
 
