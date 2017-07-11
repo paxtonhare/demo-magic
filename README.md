@@ -56,9 +56,10 @@ clear
 Then use the handy functions to run through your demo.
 
 ## Command line usage
-demo-magic.sh exposes 2 options out of the box to your script.
-- -d - disable simulated typing. Useful for debugging
+demo-magic.sh exposes 3 options out of the box to your script.
+- -d - disable simulated typing. Useful for debuging
 - -h - prints the usage text
+- -n - set no default waiting after `p` and `pe` functions
 
 ```bash
 $ ./my-demo.sh -h
@@ -68,6 +69,7 @@ Usage: ./my-demo.sh [options]
   Where options is one or more of:
   -h  Prints Help text
   -d  Debug mode. Disables simulated typing
+  -n  No wait
 
 ```
 
@@ -102,3 +104,26 @@ cat node-modules-install.log
 # now type and run the command to start your app
 pe "node index.js"
 ```
+
+### No waiting
+The -n _no wait_ option can be useful if you want to print and execute multiple commands.
+
+```bash
+# include demo-magic
+. ~/Desktop/Git/src/demo-magic/demo-magic.sh -n
+
+# add multiple commands
+pe 'git status'
+pe 'git log --oneline --decorate -n 20'
+```bash
+However this will oblige you to define your waiting points manually e.g.
+```bash
+...
+# define waiting points
+pe 'git status'
+pe 'git log --oneline --decorate -n 20'
+wait
+pe 'git pull'
+pe 'git log --oneline --decorate -n 20'
+wait
+```bash

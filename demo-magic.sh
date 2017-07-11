@@ -14,6 +14,9 @@
 # the speed to "type" the text
 TYPE_SPEED=20
 
+# no wait after "p" or "pe"
+NO_WAIT=false
+
 # handy color vars for pretty prompts
 BLACK="\033[0;30m"
 BLUE="\033[0;34m"
@@ -60,8 +63,10 @@ function p() {
   x=$(PS1="$DEMO_PROMPT" "$BASH" --norc -i </dev/null 2>&1 | sed -n '${s/^\(.*\)exit$/\1/p;}')
   printf "$x"
 
-  # wait for the user to press ENTER before typing the command
-  wait
+  # wait for the user to press a key before typing the command
+  if !($NO_WAIT); then
+    wait
+  fi
 
   if [[ -z $TYPE_SPEED ]]; then
     echo -en "\033[0m$cmd"
@@ -69,8 +74,10 @@ function p() {
     echo -en "\033[0m$cmd" | pv -qL $[$TYPE_SPEED+(-2 + RANDOM%5)];
   fi
 
-  # wait for the user to press ENTER before moving on
-  wait
+  # wait for the user to press a key before moving on
+  if !($NO_WAIT); then
+    wait
+  fi
   echo ""
 }
 
@@ -114,7 +121,7 @@ check_pv
 # -h for help
 # -d for disabling simulated typing
 #
-while getopts ":dh" opt; do
+while getopts ":dhn" opt; do
   case $opt in
     h)
       usage
@@ -122,6 +129,9 @@ while getopts ":dh" opt; do
       ;;
     d)
       unset TYPE_SPEED
+      ;;
+    n)
+      NO_WAIT=true
       ;;
   esac
 done
