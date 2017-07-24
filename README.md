@@ -30,10 +30,19 @@ p "ls -l"
 ### wait
 Waits for the user to press <kbd>ENTER</kbd>.
 
+If `PROMPT_TIMEOUT` is defined and > 0 the demo will automatically proceed after the amount of seconds has passed.
+
 ```bash
 #!/bin/bash
 
+# Will wait until user presses enter
+PROMPT_TIMEOUT=0
 wait
+
+# Will wait max 5 seconds until user presses
+PROMPT_TIMEOUT=5
+wait
+
 ```
 
 ### cmd
@@ -65,9 +74,10 @@ Then use the handy functions to run through your demo.
 
 ## Command line usage
 demo-magic.sh exposes 3 options out of the box to your script.
-- -d - disable simulated typing. Useful for debugging
-- -h - prints the usage text
-- -n - set no default waiting after `p` and `pe` functions
+- `-d` - disable simulated typing. Useful for debugging
+- `-h` - prints the usage text
+- `-n` - set no default waiting after `p` and `pe` functions
+- `-w` - set no wait timeout after `p` and `pe` functions
 
 ```bash
 $ ./my-demo.sh -h
@@ -78,7 +88,7 @@ Usage: ./my-demo.sh [options]
   -h  Prints Help text
   -d  Debug mode. Disables simulated typing
   -n  No wait
-
+  -w  Waits max the given amount of seconds before proceeding with demo (e.g. `-w5`)
 ```
 
 ## Useful Tricks
@@ -118,12 +128,13 @@ The -n _no wait_ option can be useful if you want to print and execute multiple 
 
 ```bash
 # include demo-magic
-. ~/Desktop/Git/src/demo-magic/demo-magic.sh -n
+. demo-magic.sh -n
 
 # add multiple commands
 pe 'git status'
 pe 'git log --oneline --decorate -n 20'
-```bash
+```
+
 However this will oblige you to define your waiting points manually e.g.
 ```bash
 ...

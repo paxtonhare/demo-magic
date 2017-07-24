@@ -17,6 +17,9 @@ TYPE_SPEED=20
 # no wait after "p" or "pe"
 NO_WAIT=false
 
+# if > 0, will pause for this amount of seconds before automatically proceeding with any p or pe
+PROMPT_TIMEOUT=0
+
 # handy color vars for pretty prompts
 BLACK="\033[0;30m"
 BLUE="\033[0;34m"
@@ -44,9 +47,14 @@ function usage() {
 
 ##
 # wait for user to press ENTER
+# if $PROMPT_TIMEOUT > 0 this will be used as the max time for proceeding automatically
 ##
 function wait() {
-  read -rs;
+  if [[ "$PROMPT_TIMEOUT" == "0" ]]; then
+    read -rs
+  else
+    read -rst "$PROMPT_TIMEOUT"
+  fi
 }
 
 ##
@@ -139,7 +147,7 @@ check_pv
 # -h for help
 # -d for disabling simulated typing
 #
-while getopts ":dhn" opt; do
+while getopts ":dhnw:" opt; do
   case $opt in
     h)
       usage
@@ -151,5 +159,7 @@ while getopts ":dhn" opt; do
     n)
       NO_WAIT=true
       ;;
+    w)
+      PROMPT_TIMEOUT=$OPTARG
   esac
 done
