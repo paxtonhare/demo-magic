@@ -41,7 +41,8 @@ function usage() {
   echo -e "\tWhere options is one or more of:"
   echo -e "\t-h\tPrints Help text"
   echo -e "\t-d\tDebug mode. Disables simulated typing"
-  echo -e "\t-d\tDebug mode. Disables simulated typing"
+  echo -e "\t-n\tNo wait"
+  echo -e "\t-w\tWaits max the given amount of seconds before proceeding with demo (e.g. `-w5`)"
   echo -e ""
 }
 
