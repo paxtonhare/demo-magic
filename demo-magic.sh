@@ -42,7 +42,7 @@ function usage() {
   echo -e "\t-h\tPrints Help text"
   echo -e "\t-d\tDebug mode. Disables simulated typing"
   echo -e "\t-n\tNo wait"
-  echo -e "\t-w\tWaits max the given amount of seconds before proceeding with demo (e.g. `-w5`)"
+  echo -e "\t-w\tWaits max the given amount of seconds before proceeding with demo (e.g. '-w5')"
   echo -e ""
 }
 
