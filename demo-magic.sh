@@ -20,6 +20,10 @@ NO_WAIT=false
 # if > 0, will pause for this amount of seconds before automatically proceeding with any p or pe
 PROMPT_TIMEOUT=0
 
+# don't show command number unless user specifies it
+SHOW_CMD_NUMS=false
+
+
 # handy color vars for pretty prompts
 BLACK="\033[0;30m"
 BLUE="\033[0;34m"
@@ -30,6 +34,8 @@ PURPLE="\033[0;35m"
 BROWN="\033[0;33m"
 WHITE="\033[1;37m"
 COLOR_RESET="\033[0m"
+
+C_NUM=0
 
 ##
 # prints the script usage
@@ -71,7 +77,13 @@ function p() {
 
   # render the prompt
   x=$(PS1="$DEMO_PROMPT" "$BASH" --norc -i </dev/null 2>&1 | sed -n '${s/^\(.*\)exit$/\1/p;}')
-  printf "$x"
+  
+  # show command number is selected
+  if $SHOW_CMD_NUMS; then
+   printf "[$((++C_NUM))] $x"
+  else
+   printf "$x"
+  fi
 
   # wait for the user to press a key before typing the command
   if !($NO_WAIT); then
@@ -148,7 +160,7 @@ check_pv
 # -h for help
 # -d for disabling simulated typing
 #
-while getopts ":dhnw:" opt; do
+while getopts ":dhncw:" opt; do
   case $opt in
     h)
       usage
@@ -160,7 +172,11 @@ while getopts ":dhnw:" opt; do
     n)
       NO_WAIT=true
       ;;
+    c)
+      SHOW_CMD_NUMS=true
+      ;;
     w)
       PROMPT_TIMEOUT=$OPTARG
+      ;;
   esac
 done
