@@ -37,6 +37,10 @@ COLOR_RESET="\033[0m"
 
 C_NUM=0
 
+# prompt and command color which can be overriden
+DEMO_PROMPT="$ "
+DEMO_CMD_COLOR=WHITE
+
 ##
 # prints the script usage
 ##
@@ -91,9 +95,9 @@ function p() {
   fi
 
   if [[ -z $TYPE_SPEED ]]; then
-    echo -en "\033[0m$cmd"
+    echo -en "$DEMO_CMD_COLOR$cmd$COLOR_RESET"
   else
-    echo -en "\033[0m$cmd" | pv -qL $[$TYPE_SPEED+(-2 + RANDOM%5)];
+    echo -en "$DEMO_CMD_COLOR$cmd$COLOR_RESET" | pv -qL $[$TYPE_SPEED+(-2 + RANDOM%5)];
   fi
 
   # wait for the user to press a key before moving on
