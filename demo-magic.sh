@@ -28,6 +28,7 @@ SHOW_CMD_NUMS=false
 BLACK="\033[0;30m"
 BLUE="\033[0;34m"
 GREEN="\033[0;32m"
+GREY="\033[0;90m"
 CYAN="\033[0;36m"
 RED="\033[0;31m"
 PURPLE="\033[0;35m"
@@ -36,6 +37,11 @@ WHITE="\033[1;37m"
 COLOR_RESET="\033[0m"
 
 C_NUM=0
+
+# prompt and command color which can be overriden
+DEMO_PROMPT="$ "
+DEMO_CMD_COLOR=$WHITE
+DEMO_COMMENT_COLOR=$GREY
 
 ##
 # prints the script usage
@@ -73,7 +79,11 @@ function wait() {
 #
 ##
 function p() {
-  cmd=$1
+  if [[ ${1:0:1} == "#" ]]; then
+    cmd=$DEMO_COMMENT_COLOR$1$COLOR_RESET
+  else
+    cmd=$DEMO_CMD_COLOR$1$COLOR_RESET
+  fi
 
   # render the prompt
   x=$(PS1="$DEMO_PROMPT" "$BASH" --norc -i </dev/null 2>&1 | sed -n '${s/^\(.*\)exit$/\1/p;}')
@@ -91,9 +101,9 @@ function p() {
   fi
 
   if [[ -z $TYPE_SPEED ]]; then
-    echo -en "\033[0m$cmd"
+    echo -en "$cmd"
   else
-    echo -en "\033[0m$cmd" | pv -qL $[$TYPE_SPEED+(-2 + RANDOM%5)];
+    echo -en "$cmd" | pv -qL $[$TYPE_SPEED+(-2 + RANDOM%5)];
   fi
 
   # wait for the user to press a key before moving on
