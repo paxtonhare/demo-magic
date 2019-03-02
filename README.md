@@ -145,4 +145,4 @@ wait
 pe 'git pull'
 pe 'git log --oneline --decorate -n 20'
 wait
-```bash
+```
