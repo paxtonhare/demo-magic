@@ -96,7 +96,7 @@ function p() {
   fi
 
   # wait for the user to press a key before typing the command
-  if !($NO_WAIT); then
+  if [[ ! $NO_WAIT ]]; then
     wait
   fi
 
@@ -107,7 +107,7 @@ function p() {
   fi
 
   # wait for the user to press a key before moving on
-  if !($NO_WAIT); then
+  if [[ ! $NO_WAIT ]]; then
     wait
   fi
   echo ""
