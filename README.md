@@ -95,7 +95,7 @@ clear
 Then use the handy functions to run through your demo.
 
 ## Command line usage
-demo-magic.sh exposes 3 options out of the box to your script.
+demo-magic.sh exposes some options to your script.
 - `-d` - disable simulated typing. Useful for debugging
 - `-h` - prints the usage text
 - `-n` - set no default waiting after `p` and `pe` functions
