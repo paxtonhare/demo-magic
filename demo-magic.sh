@@ -124,9 +124,7 @@ function p() {
 function pe() {
   # print the command
   p "$@"
-
-  # execute the command
-  eval "$@"
+  run_cmd "$@"
 }
 
 ##
@@ -154,7 +152,19 @@ function cmd() {
   x=$(PS1="$DEMO_PROMPT" "$BASH" --norc -i </dev/null 2>&1 | sed -n '${s/^\(.*\)exit$/\1/p;}')
   printf "$x\033[0m"
   read command
-  eval "${command}"
+  run_cmd "${command}"
+}
+
+function run_cmd() {
+  function handle_cancel() {
+    printf ""
+  }
+
+  trap handle_cancel SIGINT
+  stty -echoctl
+  eval "$@"
+  stty echoctl
+  trap - SIGINT
 }
 
 
