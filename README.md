@@ -10,7 +10,12 @@ demo-magic.sh is a handy shell script that enables you to script repeatable demo
 ## Functions
 
 ### pe
-Print and Execute. This function will simulate typing whatever you give it. It will then pause until you press <kbd>ENTER</kbd>. After your keypress it will run the command.
+Print and Execute.
+
+1. Waits for you to press <kbd>ENTER</kbd> (unless -n is passed).
+1. Then simulates typing the command you gave it.
+1. Then pauses until you press <kbd>ENTER</kbd>.
+1. Then runs the command.
 
 ```bash
 #!/bin/bash
@@ -18,8 +23,25 @@ Print and Execute. This function will simulate typing whatever you give it. It w
 pe "ls -l"
 ```
 
+### pei
+Print and Execute immediately.
+
+1. Simulates typing the command you gave it.
+1. Then pauses until you press <kbd>ENTER</kbd>.
+1. Then runs the command.
+
+```bash
+#!/bin/bash
+
+pei "ls -l"
+```
+
 ### p
-Print only. This function will simulate typing whatever you give it. It will not run the command. After typing it will pause until you press <kbd>ENTER</kbd>. After your keypress it will move on to the next instruction in your script.
+Print only.
+
+1. Waits for you to press <kbd>ENTER</kbd> (unless -n is passed).
+1. Then simulates typing the command you gave it.
+1. Then pauses until you press <kbd>ENTER</kbd>.
 
 ```bash
 #!/bin/bash

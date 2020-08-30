@@ -87,7 +87,7 @@ function p() {
 
   # render the prompt
   x=$(PS1="$DEMO_PROMPT" "$BASH" --norc -i </dev/null 2>&1 | sed -n '${s/^\(.*\)exit$/\1/p;}')
-  
+
   # show command number is selected
   if $SHOW_CMD_NUMS; then
    printf "[$((++C_NUM))] $x"
@@ -127,6 +127,18 @@ function pe() {
 
   # execute the command
   eval "$@"
+}
+
+##
+# print and executes a command immediately
+#
+# takes 1 parameter - the string command to run
+#
+# usage: pei "ls -l"
+#
+##
+function pei {
+  NO_WAIT=true pe "$@"
 }
 
 ##
