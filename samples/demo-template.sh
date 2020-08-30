@@ -22,6 +22,9 @@
 #
 DEMO_PROMPT="${GREEN}➜ ${CYAN}\W "
 
+# text color
+# DEMO_CMD_COLOR=$BLACK
+
 # hide the evidence
 clear
 
@@ -35,7 +38,7 @@ pe "cd stuff"
 
 pe "ls"
 
-p "cat \"something you dont want to really run\""
+p "cat \"something you want to pretend to run\""
 
 # show a prompt so as not to reveal our true nature after
 # the demo has concluded
