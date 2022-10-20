@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
-########################
-# include the magic
-########################
+#################################
+# include the -=magic=-
+# you can pass command line args
+#
+# example:
+# to disable simulated typing
+# . ../demo-magic.sh -d
+#
+# pass -h to see all options
+#################################
 . ../demo-magic.sh
 
 
@@ -28,6 +35,8 @@ DEMO_PROMPT="${GREEN}➜ ${CYAN}\W "
 # hide the evidence
 clear
 
+# enters interactive mode and allows newly typed command to be executed
+cmd
 
 # put your demo awesomeness here
 if [ ! -d "stuff" ]; then

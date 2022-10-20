@@ -168,3 +168,13 @@ pe 'git pull'
 pe 'git log --oneline --decorate -n 20'
 wait
 ```
+
+### Pesky key cursor
+
+Some terminals (Mac terminal, [iterm2](https://iterm2.com/)) display a key cursor when input is masked.
+
+![Pesky Key Icon](_images/pesky-key-icon.png)
+
+You can turn this off in [iterm2](https://iterm2.com/) like so:
+
+![Disable icon in iterm2](_images/iterm-disable-key.png)

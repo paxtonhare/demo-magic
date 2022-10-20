@@ -4,14 +4,14 @@
 #
 # demo-magic.sh
 #
-# Copyright (c) 2015 Paxton Hare
+# Copyright (c) 2015-2022 Paxton Hare
 #
-# This script lets you script demos in bash. It runs through your demo script when you press
-# ENTER. It simulates typing and runs commands.
+# This script lets you script demos in bash. It runs through your demo script
+# when you press ENTER. It simulates typing and runs commands.
 #
 ###############################################################################
 
-# the speed to "type" the text
+# the speed to simulate typing the text
 TYPE_SPEED=20
 
 # no wait after "p" or "pe"
@@ -50,11 +50,12 @@ function usage() {
   echo -e ""
   echo -e "Usage: $0 [options]"
   echo -e ""
-  echo -e "\tWhere options is one or more of:"
-  echo -e "\t-h\tPrints Help text"
-  echo -e "\t-d\tDebug mode. Disables simulated typing"
-  echo -e "\t-n\tNo wait"
-  echo -e "\t-w\tWaits max the given amount of seconds before proceeding with demo (e.g. '-w5')"
+  echo -e "  Where options is one or more of:"
+  echo -e "  -h  Prints Help text"
+  echo -e "  -d  Debug mode. Disables simulated typing"
+  echo -e "  -n  No wait"
+  echo -e "  -w  Waits max the given amount of seconds before "
+  echo -e "      proceeding with demo (e.g. '-w5')"
   echo -e ""
 }
 
@@ -162,7 +163,7 @@ function run_cmd() {
 
   trap handle_cancel SIGINT
   stty -echoctl
-  eval "$@"
+  eval $@
   stty echoctl
   trap - SIGINT
 }
@@ -173,20 +174,24 @@ function check_pv() {
 
     echo ""
     echo -e "${RED}##############################################################"
-    echo "# HOLD IT!! I require pv but it's not installed.  Aborting." >&2;
+    echo "# HOLD IT!! I require pv for simulated typing but it's " >&2
+    echo "# not installed. Aborting." >&2;
     echo -e "${RED}##############################################################"
     echo ""
-    echo -e "${COLOR_RESET}Installing pv:"
+    echo -e "${COLOR_RESET}Disable simulated typing: "
     echo ""
-    echo -e "${BLUE}Mac:${COLOR_RESET} $ brew install pv"
+    echo -e "   unset TYPE_SPEED"
     echo ""
-    echo -e "${BLUE}Other:${COLOR_RESET} http://www.ivarch.com/programs/pv.shtml"
-    echo -e "${COLOR_RESET}"
+    echo "Installing pv:"
+    echo ""
+    echo  "   Mac: $ brew install pv"
+    echo ""
+    echo  "   Other: https://www.ivarch.com/programs/pv.shtml"
+    echo  ""
     exit 1;
   }
 }
 
-check_pv
 #
 # handle some default params
 # -h for help
@@ -212,3 +217,12 @@ while getopts ":dhncw:" opt; do
       ;;
   esac
 done
+
+echo "type speed: $TYPE_SPEED"
+##
+# Do not check for pv. This trusts the user to not set TYPE_SPEED later in the
+# demo in which case an error will occur if pv is not installed.
+##
+if [[ -n "$TYPE_SPEED" ]]; then
+  check_pv
+fi
