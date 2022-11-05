@@ -219,7 +219,6 @@ while getopts ":dhncw:" opt; do
   esac
 done
 
-echo "type speed: $TYPE_SPEED"
 ##
 # Do not check for pv. This trusts the user to not set TYPE_SPEED later in the
 # demo in which case an error will occur if pv is not installed.

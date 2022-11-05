@@ -94,6 +94,13 @@ clear
 
 Then use the handy functions to run through your demo.
 
+## Handy Starting Points
+There are a few samples in the `samples/` folder to show you how easy it is to get up and running.
+
+The `demo-template.sh` is a bit of a showcase of some of the features.
+
+The `remote-exec` folder is there to show you how to run demo-magic locally and on a remote server via ssh. This was created in response to [Issue #24](https://github.com/paxtonhare/demo-magic/issues/24)
+
 ## Command line usage
 demo-magic.sh exposes some options to your script.
 - `-d` - disable simulated typing. Useful for debugging
