@@ -27,7 +27,7 @@
 #
 # see http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/bash-prompt-escape-sequences.html for escape sequences
 #
-DEMO_PROMPT="${GREEN}➜ ${CYAN}\W "
+DEMO_PROMPT="${GREEN}➜ ${CYAN}\W ${COLOR_RESET}"
 
 # text color
 # DEMO_CMD_COLOR=$BLACK
