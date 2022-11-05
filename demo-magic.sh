@@ -33,14 +33,15 @@ CYAN="\033[0;36m"
 RED="\033[0;31m"
 PURPLE="\033[0;35m"
 BROWN="\033[0;33m"
-WHITE="\033[1;37m"
+WHITE="\033[0;37m"
+BOLD="\033[1m"
 COLOR_RESET="\033[0m"
 
 C_NUM=0
 
 # prompt and command color which can be overriden
 DEMO_PROMPT="$ "
-DEMO_CMD_COLOR=$WHITE
+DEMO_CMD_COLOR=$BOLD
 DEMO_COMMENT_COLOR=$GREY
 
 ##
