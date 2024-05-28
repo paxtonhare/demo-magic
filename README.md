@@ -75,6 +75,15 @@ Enters script into interactive mode and allows newly typed commands to be execut
 cmd
 ```
 
+### repl
+Enters script into repl mode and allows newly typed commands to be executed within the script
+Type: `exit` to leave repl mode
+```
+#!/bin/bash
+
+repl
+```
+
 ## Getting Started
 Create a shell script and include demo-magic.sh
 

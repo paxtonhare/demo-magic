@@ -49,6 +49,9 @@ pe "cd stuff"
 # ctl + c support: ctl + c to stop long-running process and continue demo
 pe "ping www.google.com"
 
+p "Entering reple mode. Type exit to leave repl mode"
+repl
+
 # print and execute: echo 'hello world' > file.txt
 pe "echo 'hello world' > file.txt"
 

@@ -157,6 +157,31 @@ function cmd() {
   run_cmd "${command}"
 }
 
+##
+# Enters script into repl mode
+#
+# and allows newly typed commands to be executed within the script
+#
+# type exit to leave the repl
+#
+# usage : repl
+#
+##
+function repl() {
+  # render the prompt
+  looping=true
+  while $looping; do
+    x=$(PS1="$DEMO_PROMPT" "$BASH" --norc -i </dev/null 2>&1 | sed -n '${s/^\(.*\)exit$/\1/p;}')
+    printf "$x\033[0m"
+    read command
+    if [[ "$command" == "exit" ]]; then
+      looping=false
+    else
+      run_cmd "$command"
+    fi
+  done
+}
+
 function run_cmd() {
   function handle_cancel() {
     printf ""
