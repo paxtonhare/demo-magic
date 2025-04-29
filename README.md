@@ -110,6 +110,8 @@ The `demo-template.sh` is a bit of a showcase of some of the features.
 
 The `remote-exec` folder is there to show you how to run demo-magic locally and on a remote server via ssh. This was created in response to [Issue #24](https://github.com/paxtonhare/demo-magic/issues/24)
 
+The `self-setup` folder shows how you can setup an environment before starting your demo.
+
 ## Command line usage
 demo-magic.sh exposes some options to your script.
 - `-d` - disable simulated typing. Useful for debugging
