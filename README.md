@@ -18,8 +18,6 @@ Print and Execute.
 1. Then runs the command.
 
 ```bash
-#!/bin/bash
-
 pe "ls -l"
 ```
 
@@ -27,12 +25,9 @@ pe "ls -l"
 Print and Execute immediately.
 
 1. Simulates typing the command you gave it.
-1. Then pauses until you press <kbd>ENTER</kbd>.
 1. Then runs the command.
 
 ```bash
-#!/bin/bash
-
 pei "ls -l"
 ```
 
@@ -44,8 +39,6 @@ Print only.
 1. Then pauses until you press <kbd>ENTER</kbd>.
 
 ```bash
-#!/bin/bash
-
 p "ls -l"
 ```
 
@@ -55,8 +48,6 @@ Waits for the user to press <kbd>ENTER</kbd>.
 If `PROMPT_TIMEOUT` is defined and > 0 the demo will automatically proceed after the amount of seconds has passed.
 
 ```bash
-#!/bin/bash
-
 # Will wait until user presses enter
 PROMPT_TIMEOUT=0
 wait
@@ -64,23 +55,18 @@ wait
 # Will wait max 5 seconds until user presses
 PROMPT_TIMEOUT=5
 wait
-
 ```
 
 ### cmd
 Enters script into interactive mode and allows newly typed commands to be executed within the script
-```
-#!/bin/bash
-
+```bash
 cmd
 ```
 
 ### repl
 Enters script into repl mode and allows newly typed commands to be executed within the script
 Type: `exit` to leave repl mode
-```
-#!/bin/bash
-
+```bash
 repl
 ```
 
