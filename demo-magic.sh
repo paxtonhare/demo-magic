@@ -16,6 +16,8 @@ TYPE_SPEED=20
 
 # no wait after "p" or "pe"
 NO_WAIT=false
+# display command without waiting
+NO_WAIT_DISPLAY_CMD=false
 
 # if > 0, will pause for this amount of seconds before automatically proceeding with any p or pe
 PROMPT_TIMEOUT=0
@@ -98,7 +100,7 @@ function p() {
   fi
 
   # wait for the user to press a key before typing the command
-  if [ $NO_WAIT = false ]; then
+  if [ "$NO_WAIT" = false ] && [ "$NO_WAIT_DISPLAY_CMD" = false ]; then
     wait
   fi
 
